@@ -1,0 +1,3 @@
+﻿Solution of Part A - ValidateLoginTest.cs : It contains test methods TestValidLogin() and TestInvalidLogin() to verify the login functionality.
+Solution of Part B: ShoppingCartTest.cs :It contains test method ValidateCart() to verify that you can add an item to the basket, navigate to it and see the same item there. After that, you can empty the basket.
+Solution of Part C: It contains my thoughts on good strategy/approach to ensure that the test data is always correct when the tests are executed.

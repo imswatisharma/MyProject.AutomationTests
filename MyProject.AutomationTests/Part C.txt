@@ -1,0 +1,32 @@
+Part C – consider
+In our automation tests, having the right users with right settings, the right item in stock etc. is 
+imperative to be able to execute the tests in a stable manner.
+What do you think is a good strategy/approach to ensure that the test data is always correct when 
+the tests are executed
+
+
+Answer:
+Following are my thoughts:
+
+1) Automation test data should always be saved in an external file like property file etc. Easier for maintenance as it doesn't affect code as well as tester can modify the data without need of code change.
+2) Perform field validations on test data: Minimum & Maximum length, Valid & invalid characters, type(integer/string/alphanumeric).
+The test data must be realistic as well as versatile to cover all scenarios.
+3) Maintain data integrity of test data like foreign key/primary key, constraints and triggers etc.
+4) Wherever possible, generate unique test data through automation for each test run. For example - generators for email address and address/zipcode, voucher/rebate codes
+5) If there are more than one test environment, split test data in 2 categories:
+1st category: Data common across all environments
+2nd category: Data specific to each environment
+Save them in files/database tables accordingly.
+6) Think about test data saving/maintenance approach for local and global combinations, i.e. language + country combination
+7) Take database backups of test data - saves effort to create test data as well as you can refer to correct data if you've corrupt data locally.
+8) Refresh test data periodically from the backup/repository.
+9) If a specific test scenario has very specific test data, it must be maintained in a way that other applications/users can't modify it(only users/apps with specific admin privileges can do so).
+10) Maintain security & privacy - If the test data is copy from Production env, it must be masked/encrypted properly. Otherwise, create own test data.
+11) If the application has integration with 3rd parties, have some tests to validate the test data is in sync with the interface towards them.
+12) Sanity checks of the enviroments and regression testing can indicate about the status of test data there.
+13) Have a process for cleanup of unwanted/old test data.
+
+
+In my automated test,
+A) I've taken the input fields(like url, valid/invalid usename & password, product keyword to search) from an input file which allows QA to just configure it with different data without needing code change.
+B) While proceeding with each test step, I've used Assertion to validate the existance of required webelements in order to handle exceptions. For example - Upon writing keyword to search a product, we are verifying that a suggested item appears before proceeding.
